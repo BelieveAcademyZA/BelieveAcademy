@@ -25,7 +25,7 @@ h2 {
 }
 
 header {
-	
+	text-align: center;
 }
 
 nav {
@@ -118,8 +118,6 @@ main {
 }
 
 .logo {
-	display: block;
-	/* height: 7rem; */
 	margin: 0 auto;
 	width: max(10vw, 200px);
 }
