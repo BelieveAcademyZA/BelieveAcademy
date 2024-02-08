@@ -67,8 +67,17 @@ main {
 	padding: 0 1rem;
 }
 
+#gallery {
+	text-align: center;
+}
+
+#gallery * {
+	display: inline-block;
+	width: max(200px, 30%);
+}
+
 #name {
-		text-align: center;
+	text-align: center;
 }
 
 #name * {
