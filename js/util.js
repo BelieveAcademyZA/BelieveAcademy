@@ -1,48 +1,85 @@
-window.addEventListener("DOMContentLoaded", function() {
-	var ddt = document.body.querySelectorAll('[data-type="dropdownToggler"]');
-	
-	for(var i = 0; i < ddt.length; i++) {
-		var toggler = ddt[i];
+window.loadGallery = function() {
+	//Get list of media from list.txt
+	fetch("../gallery/list.txt")
+	.then(response => {
+		if(!response.ok) {
+			console.error(response.message);
+		}
 		
-		//Add clicking functionality
-		toggler.addEventListener("click", function(e) {
-			toggleDropdown(e.target);
-		});
-		
-		//Add triangular indicator
-		var indicator = document.createElement("span");
-		indicator.className = "dropdown";
-		indicator.setAttribute("collapsed", "true");
-		
-		toggler.appendChild(indicator);
-		
-		//Collapse all menus
-		var strTarget = toggler.getAttribute("data-target");
-		
-		var target = document.querySelector(strTarget);
-		target.style.display = "none";
-		target.setAttribute("collapsed", "true");
-	}
-});
+		return response.text();
+	})
+	.then(data => {
+		window.galleryList = data.split("\n");
+	})
+	.catch(error => {
+		console.error(error);
+	});
+}
 
-window.toggleDropdown = function(e) {
-	var strTarget = e.getAttribute("data-target");
-	
-	var target = document.querySelector(strTarget);
-	
-	var isCollapsed = target.getAttribute("collapsed");
-	
-	if(isCollapsed == "true") {
-		target.style.display = "block";
-		target.setAttribute("collapsed", "false");
-		
-		var indicator = e.getElementsByClassName("dropdown")[0];
-		indicator.setAttribute("collapsed", "false");
-	} else {
-		target.style.display = "none";
-		target.setAttribute("collapsed", "true");
-		
-		var indicator = e.getElementsByClassName("dropdown")[0];
-		indicator.setAttribute("collapsed", "true");
+window.createGallery = function() {
+	if(window.galleryList == null || window.galleryList.length == 0) {
+		loadGallery();
 	}
+	
+	for(var i = 0; i < window.galleryList.length; i++) {
+		var source = window.galleryList[i];
+		
+		//Ignore if comment
+		if(source.startsWith("#")) {
+			continue;
+		}
+		
+		var extention = window.getExtention(source);
+		var type = window.getMediaType(source);
+		
+		//Create element
+		if(type == "img") {
+			var img = document.createElement("img");
+			img.src = source;
+			img.alt = source.split("/").pop().split(".")[0];
+			
+			document.getElementById("gallery").appendChild(img);
+		}
+		if(type == "video") {
+			var video = document.createElement("video");
+			var src = document.createElement("source");
+			src.src = source;
+			src.type = "video/" + extention;
+			video.appendChild(src);
+			
+			document.getElementById("gallery").appendChild(video);
+		}
+	}
+}
+
+window.getExtention(name) {
+	return name.split(".").pop().toLowerCase();
+}
+
+window.getMediaType(name) {
+	//Get extention
+	var extention = window.getExtention(name);
+	
+	var type = "";
+	switch(extention) {
+		case "jpg":
+		case "jpeg":
+		case "png":
+		case "pdf":
+		case "svg":
+		case "gif":
+			type = "img";
+			break;
+		
+		case "mp4":
+		case "webm":
+			type = "video";
+			break;
+		
+		default:
+			console.log("couldn't determine type for \"" + source + "\"");
+			return "Unknown";
+	}
+	
+	return type;
 }
