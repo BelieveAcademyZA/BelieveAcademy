@@ -11,39 +11,44 @@ window.createGallery = function(limit = 100) {
 	.then(data => {
 		data = data.replaceAll("\r", "");
 		var galleryList = data.split("\n");
+
+		//Remove comments
+		galleryList = galleryList.filter(item => !item.startsWith('#'));
+		
+		galleryList = getRandomUniqueItems(galleryList, limit);
 		
 		//Create elements
-		for(var i = 0; i < galleryList.length && document.getElementById("gallery").childElementCount < limit; i++) {
-		var source = galleryList[i];
-		
-		//Ignore if comment
-		if(source.startsWith("#")) {
-			continue;
-		}
-		
-		var extention = window.getExtention(source);
-		var type = window.getMediaType(source);
-
-		source = "gallery/" + source;
+		for(var i = 0; i < galleryList.length; i++) {
+			var source = galleryList[i];
 			
-		//Create element
-		if(type == "img") {
-			var img = document.createElement("img");
-			img.src = source;
-			img.alt = source.split("/").pop().split(".")[0];
+			//Ignore if comment
+			if(source.startsWith("#")) {
+				continue;
+			}
 			
-			document.getElementById("gallery").appendChild(img);
+			var extention = window.getExtention(source);
+			var type = window.getMediaType(source);
+	
+			source = "gallery/" + source;
+				
+			//Create element
+			if(type == "img") {
+				var img = document.createElement("img");
+				img.src = source;
+				img.alt = source.split("/").pop().split(".")[0];
+				
+				document.getElementById("gallery").appendChild(img);
+			}
+			if(type == "video") {
+				var video = document.createElement("video");
+				var src = document.createElement("source");
+				src.src = source;
+				src.type = "video/" + extention;
+				video.appendChild(src);
+				
+				document.getElementById("gallery").appendChild(video);
+			}
 		}
-		if(type == "video") {
-			var video = document.createElement("video");
-			var src = document.createElement("source");
-			src.src = source;
-			src.type = "video/" + extention;
-			video.appendChild(src);
-			
-			document.getElementById("gallery").appendChild(video);
-		}
-	}
 	})
 	.catch(error => {
 		console.error(error);
@@ -80,4 +85,24 @@ window.getMediaType = function(name) {
 	}
 	
 	return type;
+}
+
+window.getRandomUniqueItems = function(arr, n) {
+  // Check if the array has enough items
+  if (n > arr.length) {
+    console.error("Error: Not enough items in the array.");
+    return arr;
+  }
+
+  // Clone the array to avoid modifying the original
+  const shuffledArray = [...arr];
+
+  // Fisher-Yates shuffle algorithm
+  for (let i = shuffledArray.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
+  }
+
+  // Return the first n items from the shuffled array
+  return shuffledArray.slice(0, n);
 }
