@@ -73,7 +73,8 @@ main {
 
 #gallery * {
 	display: inline-block;
-	width: max(200px, 30%);
+	width: max(200px, 45%);
+	margin: 5px;
 }
 
 #name {
