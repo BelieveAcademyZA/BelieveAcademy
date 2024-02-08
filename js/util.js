@@ -1,6 +1,6 @@
-async function loadGallery() {
+window.createGallery = function(limit = 100) {
 	//Get list of media from list.txt
-	fetch("../gallery/list.txt")
+	fetch("gallery/list.txt")
 	.then(response => {
 		if(!response.ok) {
 			console.error(response.message);
@@ -9,20 +9,11 @@ async function loadGallery() {
 		return response.text();
 	})
 	.then(data => {
-		window.galleryList = data.split("\n");
-	})
-	.catch(error => {
-		console.error(error);
-	});
-}
-
-window.createGallery = function() {
-	if(window.galleryList == null || window.galleryList.length == 0) {
-		await loadGallery();
-	}
-	
-	for(var i = 0; i < window.galleryList.length; i++) {
-		var source = window.galleryList[i];
+		var galleryList = data.split("\n");
+		
+		//Create elements
+		for(var i = 0; i < galleryList.length && document.getElementById("gallery").childElementCount < limit; i++) {
+		var source = galleryList[i];
 		
 		//Ignore if comment
 		if(source.startsWith("#")) {
@@ -50,6 +41,10 @@ window.createGallery = function() {
 			document.getElementById("gallery").appendChild(video);
 		}
 	}
+	})
+	.catch(error => {
+		console.error(error);
+	});
 }
 
 window.getExtention = function(name) {
