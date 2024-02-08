@@ -52,11 +52,11 @@ window.createGallery = function() {
 	}
 }
 
-window.getExtention(name) {
+window.getExtention = function(name) {
 	return name.split(".").pop().toLowerCase();
 }
 
-window.getMediaType(name) {
+window.getMediaType = function(name) {
 	//Get extention
 	var extention = window.getExtention(name);
 	
