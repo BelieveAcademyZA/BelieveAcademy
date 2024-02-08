@@ -1,4 +1,4 @@
-window.loadGallery = function() {
+async function loadGallery() {
 	//Get list of media from list.txt
 	fetch("../gallery/list.txt")
 	.then(response => {
@@ -18,7 +18,7 @@ window.loadGallery = function() {
 
 window.createGallery = function() {
 	if(window.galleryList == null || window.galleryList.length == 0) {
-		loadGallery();
+		await loadGallery();
 	}
 	
 	for(var i = 0; i < window.galleryList.length; i++) {
