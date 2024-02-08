@@ -9,6 +9,7 @@ window.createGallery = function(limit = 100) {
 		return response.text();
 	})
 	.then(data => {
+		data = data.replaceAll("\r", "");
 		var galleryList = data.split("\n");
 		
 		//Create elements
@@ -72,7 +73,7 @@ window.getMediaType = function(name) {
 			break;
 		
 		default:
-			console.log("couldn't determine type for \"" + source + "\"");
+			console.log("couldn't determine type for \"" + name + "\"");
 			return "Unknown";
 	}
 	
