@@ -23,7 +23,9 @@ window.createGallery = function(limit = 100) {
 		
 		var extention = window.getExtention(source);
 		var type = window.getMediaType(source);
-		
+
+		source = "gallery/" + source;
+			
 		//Create element
 		if(type == "img") {
 			var img = document.createElement("img");
