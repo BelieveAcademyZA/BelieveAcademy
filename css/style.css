@@ -28,6 +28,10 @@ header {
 	text-align: center;
 }
 
+ol ul {
+	list-style: none;
+}
+
 nav {
 	/* background: linear-gradient(to bottom, #d2c496 80%, #fed 80% 100%); */
 	background-color: #d2c496;
