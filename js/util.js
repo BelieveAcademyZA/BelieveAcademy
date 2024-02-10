@@ -14,7 +14,7 @@ window.addEventListener("DOMContentLoaded", function() {
 		//Close if mouse leaves area
 		var container = toggle.parentElement;
 		container.addEventListener("pointerout", function(evt) {
-			if(evt.target.querySelector(".ddMenu").style.display != "none") {
+			if(this.querySelector(".ddMenu").style.display != "none") {
 				toggleDropdown(evt.target);
 			}
 		});
