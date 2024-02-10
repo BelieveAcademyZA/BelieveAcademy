@@ -10,6 +10,13 @@ window.addEventListener("DOMContentLoaded", function() {
 		toggle.addEventListener("pointerup", function(evt) {
 			toggleDropdown(evt.target);
 		});
+
+		//Close if mouse leaves area
+		toggle.addEventListener("pointerout", function(evt) {
+			if(evt.target.parentElement.querySelector(".ddMenu").style.display != none) {
+				toggleDropdown(evt.target);
+			}
+		});
 		
 		//Hide dropdown
 		toggle.querySelector(".ddIcon").setAttribute("collapsed", "false");
