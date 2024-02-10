@@ -1,3 +1,38 @@
+//Create dropdown
+window.addEventListener("DOMContentLoaded", function() {
+	//Get all dropdown togglers
+	var togglers = document.getElementsByClassName("ddToggler");
+	
+	for(var i = 0; i < togglers.length; i++) {
+		var toggle = togglers[i];
+		
+		//Add click functionality
+		toggle.addEventListener("pointerup", function(evt) {
+			toggleDropdown(evt.target);
+		});
+		
+		//Hide dropdown
+		toggle.querySelector(".ddIcon").setAttribute("collapsed", "false");
+		toggleDropdown(toggle);
+		
+		//Set parent to relative
+		toggle.parentElement.style.position = "relative";
+	}
+});
+
+window.toggleDropdown = function(elmt) {
+	//Get target element
+	var target = elmt.parentElement.querySelector(".ddMenu");
+	
+	//Toggle target visibility
+	target.style.display = (target.style.display == "none") ? "block" : "none";
+	
+	//Toggle dropdown icon
+	var icon = elmt.querySelector(".ddIcon");
+	
+	icon.setAttribute("collapsed", icon.getAttribute("collapsed")=="false");
+}
+
 window.createGallery = function(limit = 100) {
 	//Get list of media from list.txt
 	fetch("gallery/list.txt")
@@ -12,8 +47,8 @@ window.createGallery = function(limit = 100) {
 		data = data.replaceAll("\r", "");
 		var galleryList = data.split("\n");
 
-		//Remove comments
-		galleryList = galleryList.filter(item => !item.startsWith('#'));
+		//Remove comments and empty lines
+		galleryList = galleryList.filter(item => !(item.startsWith('#') || item.length == 0));
 		
 		galleryList = getRandomUniqueItems(galleryList, limit);
 		
