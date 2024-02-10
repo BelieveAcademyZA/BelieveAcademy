@@ -12,7 +12,8 @@ window.addEventListener("DOMContentLoaded", function() {
 		});
 
 		//Close if mouse leaves area
-		toggle.parentElement.addEventListener("pointerout", function(evt) {
+		var container = toggle.parentElement;
+		container.addEventListener("pointerout", function(evt) {
 			if(evt.target.querySelector(".ddMenu").style.display != "none") {
 				toggleDropdown(evt.target);
 			}
@@ -37,7 +38,7 @@ window.toggleDropdown = function(elmt) {
 	//Toggle dropdown icon
 	var icon = elmt.querySelector(".ddIcon");
 	
-	icon.setAttribute("collapsed", icon.getAttribute("collapsed")=="false");
+	icon.setAttribute("collapsed", icon.getAttribute("collapsed") == "false");
 }
 
 window.createGallery = function(limit = 100) {
