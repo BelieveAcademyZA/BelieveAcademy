@@ -12,12 +12,12 @@ window.addEventListener("DOMContentLoaded", function() {
 		});
 
 		//Close if mouse leaves area
-		var container = toggle.parentElement;
-		container.querySelector(".ddMenu").addEventListener("pointerout", function(evt) {
-			if(this.style.display != "none") {
-				toggleDropdown(evt.target);
-			}
-		});
+		// var container = toggle.parentElement;
+		// container.querySelector(".ddMenu").addEventListener("pointerout", function(evt) {
+		// 	if(this.style.display != "none") {
+		// 		toggleDropdown(evt.target);
+		// 	}
+		// });
 		
 		//Hide dropdown
 		toggle.querySelector(".ddIcon").setAttribute("collapsed", "false");
