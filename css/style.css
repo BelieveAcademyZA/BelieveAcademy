@@ -8,12 +8,15 @@ a:hover {
 	filter: invert(30%);
 }
 
-iframe {
-	width: 100%;
+fieldset {
+	margin: 0.2rem auto;
+	text-align: left;
+	width: fit-content;
 }
 
-img {
-	background-color: transparent;
+fieldset label {
+	text-align: left;
+	width: auto;
 }
 
 h2 {
@@ -22,6 +25,27 @@ h2 {
 
 header {
 	text-align: center;
+}
+
+iframe {
+	width: 100%;
+}
+
+input {
+	margin: 0.2rem 0;
+	vertical-align: middle;
+}
+
+img {
+	background-color: transparent;
+}
+
+label {
+	display: inline-block;
+	margin: 0.2rem;
+	vertical-align: middle;
+	width: min(50%, 180px);
+	text-align: right;
 }
 
 ol ul {
@@ -163,5 +187,6 @@ main {
 }
 
 .super {
-	font-variant: super;
+	vertical-align: super;
+    font-size: 80%;
 }
