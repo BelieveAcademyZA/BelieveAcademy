@@ -51,7 +51,7 @@
 	<main>
 		<h2>Enrolment</h2>
 		
-		<form action="javascript:sendApplication(this);" method="GET" style="text-align: center;">
+		<form onsubmit="handleFormSubmission(event)" style="text-align: center;">
 			<h3>Section A: information</h3>
 		
 			<h4 style="text-align: center;">Student</h4>
@@ -65,16 +65,16 @@
 			<fieldset>
 				<legend>Curriculum <span style="color: red;">*</span></legend>
 				
-				<input type="radio" name="curriculum" id="cambridge">
+				<input type="radio" name="curriculum" id="cambridge" value="cambridge">
 				<label for="cambridge">Cambridge</label><br>
 				
-				<input type="radio" name="curriculum" id="GED">
+				<input type="radio" name="curriculum" id="GED" value="GED">
 				<label for="GED">GED</label>
 			</fieldset>
 			
 		
 			<label for="grade">Grade/level to be enroled in <span style="color: red;">*</span></label>
-			<input type="number" id="grade" name="grade" required min="4" max="13" style="width: 203px;">
+			<input type="text" id="grade" name="grade" required minlength="1" maxlength="5">
 			
 			<h4 style="text-align: center;">Please include copies of the following documents:</h4>
 			<ul class="split constrict">
@@ -88,16 +88,16 @@
 			<h4>Permission</h4>
 			<p class="bold">We hereby give permission that Believe Academy may:</p>
 			<fieldset>
-				<input type="checkbox" id="marketing" name="permissions">
+				<input type="checkbox" id="marketing" name="marketing">
 				<label for="marketing">Publish photo's of my child for marketing purposes</label><br>
 				
-				<input type="checkbox" id="medical" name="permissions">
+				<input type="checkbox" id="medical" name="medical emergencies">
 				<label for="medical">Provide emergency medical services if we cannot be contacted</label><br>
 				
-				<input type="checkbox" id="outings" name="permissions">
+				<input type="checkbox" id="outings" name="outings">
 				<label for="outings">Transport my child for academic outings</label><br>
 				
-				<input type="checkbox" id="practicals" name="permissions">
+				<input type="checkbox" id="practicals" name="practicals">
 				<label for="practicals">Participate in scientific practicals including the dissection of animal organs</label><br>
 			</fieldset>
 			
@@ -220,7 +220,7 @@
 				
 				<h4>Indemnity clause</h4>
 				<p>
-					I, the parent/guardian of <input type="text" autocomplete="name"> understand
+					I, the parent/guardian of <input type="text" autocomplete="name" id="indemn"> understand
 					that <span class="bold">Believe Academy</span>, its officers, employees and
 					agents will take every care to safeguard and prevent our students and their
 					parents/guardians from injury/liability/damage to property, but cannot be
