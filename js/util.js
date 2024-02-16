@@ -10,14 +10,11 @@ window.addEventListener("DOMContentLoaded", function() {
 		toggle.addEventListener("pointerup", function(evt) {
 			toggleDropdown(evt.target);
 		});
-
-		//Close if mouse leaves area
-		// var container = toggle.parentElement;
-		// container.querySelector(".ddMenu").addEventListener("pointerout", function(evt) {
-		// 	if(this.style.display != "none") {
-		// 		toggleDropdown(evt.target);
-		// 	}
-		// });
+		
+		//Remove click functionality for dropdown icon
+		toggle.querySelector(".ddIcon").removeEventListener("pointerup", function(evt) {
+			toggleDropdown(evt.target);
+		});
 		
 		//Hide dropdown
 		toggle.querySelector(".ddIcon").setAttribute("collapsed", "false");
@@ -148,4 +145,90 @@ window.getRandomUniqueItems = function(arr, n) {
 
   // Return the first n items from the shuffled array
   return shuffledArray.slice(0, n);
+}
+
+window.handleFormSubmission = function(evt) {
+	evt.preventDefault();
+	
+	var formData = new FormData(evt.target);
+	
+	const formDataObject = {};
+	formData.forEach((value, key) => {
+		formDataObject[key] = value;
+	});
+	
+	sendEmail(formDataObject);
+}
+
+window.sendEmail = function(data) {
+	//Replace empty strings
+	var nonEmpty = {};
+	Object.keys(data).forEach(key => {
+		nonEmpty[key] = data[key] === '' ? 'unknown' : data[key];
+	});
+	
+	data = nonEmpty;
+	
+	var dest = "admin@believeedu.co.za";
+	var subject = "Student application";
+	
+	// var body = "Good day,\n" +
+			// "I would like to enroll <span style=\"font-weight: bold;\">" + data.name + "</span> " + 
+			// "in the <span style=\"font-weight: bold;\">" + data.curriculum + "</span> curriculum.\n" +
+			// "Their ID number is <span style=\"font-weight: bold;\">" + data.idNum + "</span> and they " +
+			// "will be attending level <span style=\"font-weight: bold;\">" + data.grade + "</span>.\n" +
+			// "I give the following permissions: <span style=\"font-weight: bold;\">" + getPermissions(data) +
+			// "</span>.\nMy child's father's name is <span style=\"font-weight: bold;\">" + data.father +
+			// "</span> and his number is <span style=\"font-weight: bold;\">" + data.telFather + "</span>.\n" +
+			// "My child's mother's name is <span style=\"font-weight: bold;\">" + data.mother+
+			// "</span> and her number is <span style=\"font-weight: bold;\">" + data.telMother+ "</span>.\n" +
+			// "My email address is <span style=\"font-weight: bold;\">" + data.email + "</span>.\n" +
+			// "My emergency contact is <span style=\"font-weight: bold\">" + data.emergency + "</span>.\n" +
+			// "My family's doctor is <span style=\"font-weight: bold;\">" + data.doctor + "</span>.\n\n" +
+			// "The account should be made in my name <span style=\"font-weight: bold;\">(" + data.holderName + ")</span>. " +
+			// "My ID number is <span style=\"font-weight: bold;\">" + data.holderId + "</span> and my number is " +
+			// "<span style=\"font-weight: bold;\">" + data.holderTel + "</span>.\n" +
+			// "Our address is <span style=\"font-weight: bold;\">" + data.address + "</span>.\n" +
+			// "You can send any invoices to <span style=\"font-weight: bold;\">" + data.holderEmail + "</span>.\n\n" +
+			// "Sincerely,\n" +
+			// data.holderName;
+			
+		var body = "Good day,\n" +
+			"I would like to enroll " + data.name + " " + 
+			"in the " + data.curriculum + " curriculum.\n" +
+			"Their ID number is " + data.idNum + " and they " +
+			"will be attending level " + data.grade + ".\n" +
+			"I give the following permissions: " + getPermissions(data) +
+			".\nMy child's father's name is " + data.father +
+			" and his number is " + data.telFather + ".\n" +
+			"My child's mother's name is " + data.mother+
+			" and her number is " + data.telMother+ ".\n" +
+			"My email address is " + data.email + ".\n" +
+			"My emergency contact is " + data.emergency + ".\n" +
+			"My family's doctor is " + data.doctor + ".\n\n" +
+			"The account should be made in my name (" + data.holderName + ") and " +
+			"my ID number is " + data.holderId + ". My number is " + data.holderTel + ".\n" +
+			"Our address is " + data.address + ".\n" +
+			"You can send any invoices to " + data.holderEmail + ".\n\n" +
+			"Sincerely,\n" +
+			data.holderName;
+	
+	
+	var concat = "mailto:" + encodeURIComponent(dest) + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+	
+	var mailer = document.createElement("a");
+	mailer.href = concat;//encodeURIComponent(concat);
+	mailer.target = "_blank";
+	mailer.style.display = "none";
+	mailer.click();
+	mailer.remove();
+}
+
+window.getPermissions = function(data) {
+	var list = getKeysWithValue(data, "on").join(", ");
+	return list.length == 0 ? "none" : list;
+}
+
+window.getKeysWithValue = function(obj, targetValue) {
+  return Object.keys(obj).filter(key => obj[key] === targetValue);
 }
