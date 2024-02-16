@@ -49,12 +49,207 @@
 	</nav>
 	
 	<main>
-		<h2>This page is under construction</h2>
+		<h2>Enrolment</h2>
 		
-		<p>
-			We hope to have this page up soon. For now, you can visit another page or
-			<a href="mailto:admin@believeEdu.co.za">contact us</a> for further questions
-		</p>
+		<form action="javascript:sendApplication(this);" method="GET" style="text-align: center;">
+			<h3>Section A: information</h3>
+		
+			<h4 style="text-align: center;">Student</h4>
+			
+			<label for="nameAndSurname">Name and Surname <span style="color: red;">*</span></label>
+			<input type="text" autocomplete="name" id="nameAndSurname" name="name" required><br>
+			
+			<label for="idNum">ID number <span style="color: red;">*</span></label>
+			<input type="text" id="idNum" name="idNum" required minlength="13" maxlength="13" pattern="^\d{13}$" placeholder="13 digit ID number"><br>
+			
+			<fieldset>
+				<legend>Curriculum <span style="color: red;">*</span></legend>
+				
+				<input type="radio" name="curriculum" id="cambridge">
+				<label for="cambridge">Cambridge</label><br>
+				
+				<input type="radio" name="curriculum" id="GED">
+				<label for="GED">GED</label>
+			</fieldset>
+			
+		
+			<label for="grade">Grade/level to be enroled in <span style="color: red;">*</span></label>
+			<input type="number" id="grade" name="grade" required min="4" max="13" style="width: 203px;">
+			
+			<h4 style="text-align: center;">Please include copies of the following documents:</h4>
+			<ul class="split constrict">
+				<li>ID/birth certificate</li>
+				<li>Previous report</li>
+				<li>Remedial reports</li>
+			</ul>
+			
+			<hr>
+			
+			<h4>Permission</h4>
+			<p class="bold">We hereby give permission that Believe Academy may:</p>
+			<fieldset>
+				<input type="checkbox" id="marketing" name="permissions">
+				<label for="marketing">Publish photo's of my child for marketing purposes</label><br>
+				
+				<input type="checkbox" id="medical" name="permissions">
+				<label for="medical">Provide emergency medical services if we cannot be contacted</label><br>
+				
+				<input type="checkbox" id="outings" name="permissions">
+				<label for="outings">Transport my child for academic outings</label><br>
+				
+				<input type="checkbox" id="practicals" name="permissions">
+				<label for="practicals">Participate in scientific practicals including the dissection of animal organs</label><br>
+			</fieldset>
+			
+			<hr>
+			
+			<h4>Parent(s)/guardian</h4>
+			<label for="father">Father</label>
+			<input type="text" autocomplete="given-name" id="father" name="father"><br>
+			
+			<label for="mother">Mother</label>
+			<input type="text" autocomplete="given-name" id="mother" name="mother"><br>
+			
+			<label for="telFather">Contact no. father</label>
+			<input type="tel" autocomplete="tel-national" id="telFather" name="telFather"><br>
+			
+			<label for="telMother">Contact no. mother</label>
+			<input type="tel" autocomplete="tel-national" id="telMother" name="telMother"><br>
+			
+			<label for="email">E-mail</label>
+			<input type="email" autocomplete="email" id="email" name="email"><br>
+			
+			<label for="emergency">Emergency contact name and no.</label>
+			<input type="text" id="emergency" name="emergency"><br>
+			
+			<label for="doctor">Family doctor's name &amp; no. in case of an emergency</label>
+			<input type="text" id="doctor" name="doctor"><br>
+			
+			<hr>
+			
+			<h4>Account holder's information</h4>
+			<label for="holderName">Name and surname <span style="color: red;">*</span></label>
+			<input type="text" autocomplete="name" id="holderName" name="holderName" required><br>
+			
+			<label for="holderId">ID no. <span style="color: red;">*</span></label>
+			<input type="text" id="holderId" name="holderId" minlength="13" maxlength="13" pattern="^\d{13}$" required placeholder="13 digit ID number"><br>
+			
+			<label for="address">Address <span style="color: red;">*</span></label>
+			<input type="text" autocomplete="street-address" id="address" name="address" required><br>
+			
+			<label for="holderTel">Contact no. <span style="color: red;">*</span></label>
+			<input type="tel" autocomplete="tel-national" id="holderTel" name="holderTel" required><br>
+			
+			<label for="holderEmail">E-mail address where invoice can be sent to <span style="color: red;">*</span></label>
+			<input type="email" autocomplete="email" id="holderEmail" name="holderEmail" required><br>	
+		
+			<div style="text-align: left;">
+				<p>
+					I hereby accept full responsibility for the payment of school fees and
+					I undertake to settle my school fee account in advance on / before the
+					7<span class="super">th</span> of every month. I accept that my child(ren)
+					may not attend classes unless school fees are up to date.
+				</p>
+				
+				<input type="checkbox" id="accept1" required>
+				<label for="accept1" class="bold" style="width: auto;">I have read and agree to the above information</label>
+				
+				
+				<p>
+					Written notice of cancellation is required one calendar month before
+					leaving hartenbos academy.
+				</p>
+				
+				<p>
+					We empathize deeply with parents facing financial challenges. Regrettably,
+					our centre does not receive any financial assistance which means our
+					existence relies entirely on tuition fees. In the event of a student’s
+					access being denied due to non-payment, re-entry will be permitted once
+					tuition fees are current, alongside a new registration fee of R1 500.
+					Thank you for understanding.
+				</p>
+				
+				
+				
+				<h3>Section B: Rules and regulations</h3>
+				<h4>Dress code</h4>
+				<ul>
+					<li>
+						Students may wear casual clothes to class but are expected to dress
+						neatly and appropriately at all times.
+					</li>
+				</ul>
+				
+				<h4>General conduct</h4>
+				<ul>
+					<li>
+						It is expected, at all times, that learners be polite and respectful
+						towards tutors, fellow students as well as any other person on the campus.
+					</li>
+				</ul>
+				
+				<h4>Imprtant:</h4>
+				<p>
+					The following misconducts are regarded as very serious and
+					<span class="bold">Believe Academy</span> reserves the right to expel
+					learners found guilty after only one warning.
+				</p>
+				
+				<ul>
+					<li>BULLYING of any sort</li>
+					<li>SMOKING and/of the possession of ALCOHOL and/or DRUGS</li>
+					<li>PORNOGRAPHY of any sort</li>
+				</ul>
+				
+				<p>
+					NB: It is also expected that learners and parents will adhere to the
+					rules of the resort on which the campus is situated and that residents,
+					employees and customers of <span class="bold underline">Brinkleys River
+					Village</span> will be treated with respect and consideration at all times.
+				</p>
+				
+				<p>
+					I, <input type="text" autocomplete="name" name="signParents" required>
+					parent(s) / guardian of <input type="text" autocomplete="name" name="signChild" required>
+					herewith accept the rules and regulations as stipulated above.
+				</p>
+				
+				<input type="checkbox" id="accept2" required>
+				<label for="accept2" class="bold" style="width: auto;">I have read and agree to the above information</label>
+				
+				
+				<h4>Indemnity clause</h4>
+				<p>
+					I, the parent/guardian of <input type="text" autocomplete="name"> understand
+					that <span class="bold">Believe Academy</span>, its officers, employees and
+					agents will take every care to safeguard and prevent our students and their
+					parents/guardians from injury/liability/damage to property, but cannot be
+					and/or is not responsible for any such injuries, property damage or liability
+					that may arise from enrolment at the campus. I further assume full
+					responsibility for the decision, and the consequences thereof, to allow my
+					child(ren) to take part in the activities at <span class="bold">Believe Academy</span>.
+					I do hereby release, agree to indemnify and hold Believe Academy, its
+					officers, employees and agents free and harmless from any and all costs,
+					losses, expenses, damages, claims, suits, causes of action or any other
+					liability or responsibility whatsoever, in law or in equity, including attorney’s
+					fees and related costs, resulting from any injury to any person(s) or damage to
+					property arising out of, or which may in any manner be connected with
+					<span class="bold">Believe Academy</span> and my child(ren)’s enrolment
+					at the school.
+				</p>
+				
+				<input type="checkbox" id="accept3" required>
+				<label for="accept3" class="bold" style="width: auto;">I have read and agree to the above information</label>
+			</div>
+			
+			<p>
+				By submitting this form, you agree that you have read and accepted all information
+				contained in this document.
+			</p>
+			
+			<input type="submit">
+			<input type="reset">
+		</form>
 	</main>
 	
 	<footer>
