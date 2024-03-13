@@ -54,7 +54,7 @@ ol ul {
 }
 
 nav {
-	/* background: linear-gradient(to bottom, #e8e2cc 80%, #fed 80% 100%); */
+	/* background: linear-gradient(to bottom, white 80%, #fed 80% 100%); */
 	background-color: white;
 	color: black;
 	/* min-height: calc(3.5rem + 2px); */
