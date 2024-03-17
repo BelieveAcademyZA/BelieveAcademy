@@ -4,11 +4,11 @@ window.addEventListener("DOMContentLoaded", function() {
 	
 	if(langPicker) {
 		langPicker.addEventListener("input", (evt) => {eventChangeLang(evt);});
+		
+		//Load default language
+		var evt = new Event("input", {target: langPicker});
+		langPicker.dispatchEvent(evt);
 	}
-	
-	//Load default language
-	var evt = new Event("input", {target: langPicker});
-	langPicker.dispatchEvent(evt);
 	
 	//Create dropdown
 	//Get all dropdown togglers
