@@ -15,7 +15,7 @@ window.addEventListener("DOMContentLoaded", function() {
 			var arg = args[i];
 			
 			if(arg.startsWith("lang")) {
-				var lang = arg.split(arg.lastIndexOf("=") + 1)[0];
+				var lang = arg.substring(arg.lastIndexOf("=") + 1);
 				setLang(lang);
 				langPicker.dispatchEvent(new Event("input"));
 			}
