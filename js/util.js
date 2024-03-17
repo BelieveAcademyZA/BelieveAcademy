@@ -164,9 +164,13 @@ window.eventChangeLang = async function(evt) {
 
 	//Set "current" page class
 	nav.querySelector("a[href^=\"" + loc + "\"]").classList.add("current");
-	var parents = nav.querySelectorAll("a a[href^=\"" + loc + "\"]");
-	for(var i = 0; i < parents.length; i++) {
-		parents[i].classList.add("current");
+	let currentElement = nav.querySelector("a[href^=\"" + loc + "\"]").parentNode;
+
+	while (currentElement !== null) {
+		if (currentElement.tagName && currentElement.tagName.toLowerCase() === 'a') {
+			currentElement.classList.add(className);
+		}
+		currentElement = currentElement.parentNode;
 	}
 
 	//Add language to nav pages
