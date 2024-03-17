@@ -181,7 +181,7 @@ window.eventChangeLang = async function(evt) {
 	let currentElement = nav.querySelector("a[href^=\"" + loc + "\"]").parentNode;
 
 	while (currentElement !== null) {
-		if (currentElement.tagName && currentElement.tagName.toLowerCase() === 'a') {
+		if (currentElement.tagName && (currentElement.tagName.toLowerCase() == "a" || currentElement.tagName.toLowerCase() == "li")) {
 			currentElement.classList.add(className);
 		}
 		currentElement = currentElement.parentNode;
