@@ -123,10 +123,16 @@ window.eventChangeLang = async function(evt) {
 	//Get text
 	var navbar = await getResource(folder + "navbar.html");
 	var plain = await getResource(folder + loc + ".txt");
+	var misc = await getResource(folder + "misc.txt");
+	misc = misc.split("\n");
 	
 	//Set html
 	var nav = document.getElementsByTagName("nav")[0];
 	nav.innerHTML = navbar;
+	
+	//Set miscellaneous text
+	document.head.querySelector("title").innerText = misc[0];
+	document.querySelector("body > header > div > label").innerText = misc[1];
 	
 	var body = document.getElementsByTagName("main")[0];
 	if(plain != undefined) {
@@ -146,16 +152,16 @@ window.eventChangeLang = async function(evt) {
 
 window.getResource = async function(url) {
 	try {
-	    const response = await fetch(url);
-	    if (!response.ok) {
-	      throw new Error('Network response was not ok');
-	    }
-	    const text = await response.text();
-	    return text;
-	  } catch (error) {
-	    console.error('Error fetching data:', error);
-	    return null;
-	  }
+		const response = await fetch(url);
+		if (!response.ok) {
+		  throw new Error('Network response was not ok');
+		}
+		const text = await response.text();
+		return text.replaceAll("\r", "");
+	} catch (error) {
+		console.error('Error fetching data:', error);
+		return null;
+	}
 }
 
 window.getExtention = function(name) {
