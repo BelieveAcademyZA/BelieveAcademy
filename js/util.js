@@ -112,15 +112,15 @@ window.createGallery = function(limit = 100) {
 	});
 }
 
-window.eventChangeLang = function(evt) {
+window.eventChangeLang = async function(evt) {
 	var lang = evt.target.value;
 	var folder = "lang/" + lang + "/";
 	var loc = window.location.href;
 	loc = loc.substring(loc.lastIndexOf("/") + 1, loc.lastIndexOf("."));
 	
 	//Get text
-	var navbar = getResource(folder + "navbar.html");
-	var plain = getResource(folder + loc + ".txt");
+	var navbar = await getResource(folder + "navbar.html");
+	var plain = await getResource(folder + loc + ".txt");
 	
 	//Set html
 	var nav = document.getElementsByTagName("nav")[0];
@@ -131,7 +131,7 @@ window.eventChangeLang = function(evt) {
 		body.innerHTML = textToHtml(plain);
 	} else {
 		
-		var html = getResource(folder + loc + ".html");
+		var html = await getResource(folder + loc + ".html");
 		
 		if(html) {
 			body.innerHTML = html;
@@ -139,23 +139,18 @@ window.eventChangeLang = function(evt) {
 	}
 }
 
-window.getResource = function(url) {
-	fetch(url)
-	.then(response => {
-		if(!response.ok) {
-			console.error(response.message);
-		}
-		
-		return response.text();
-	})
-	.then(data => {
-		data = data.replaceAll("\r", "");
-		return data;
-	})
-	.catch(error => {
-		console.error(error);
-		return "";
-	});
+window.getResource = async function(url) {
+	try {
+	    const response = await fetch(url);
+	    if (!response.ok) {
+	      throw new Error('Network response was not ok');
+	    }
+	    const text = await response.text();
+	    return text;
+	  } catch (error) {
+	    console.error('Error fetching data:', error);
+	    return null;
+	  }
 }
 
 window.getExtention = function(name) {
