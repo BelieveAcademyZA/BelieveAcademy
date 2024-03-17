@@ -222,6 +222,7 @@ span.logo {
 	font-size: 2rem;
 	font-style: italic;
 	font-weight: bold;
+	text-transform: uppercase;
 }
 
 p.logo {
