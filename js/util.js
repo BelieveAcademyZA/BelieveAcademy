@@ -146,7 +146,9 @@ window.eventChangeLang = async function(evt) {
 	var loc = window.location.href;
 	var lastSlash = loc.lastIndexOf("/");
 	var lastDot = loc.lastIndexOf(".");
-	loc = loc.substring(loc.lastIndexOf("/") + 1, (lastDot > lastSlash) ? lastDot : loc.length);
+	var argsStart = loc.indexOf("?");
+	var end = argsStart >= 0 ? ((lastDot > lastSlash && lastDot < argsStart) ? lastDot : argsStart) : ((lastDot > lastSlash) ? lastDot : loc.length);
+	loc = loc.substring(loc.lastIndexOf("/") + 1, end);
 
 	if(loc == "") {
 		loc = "index";
