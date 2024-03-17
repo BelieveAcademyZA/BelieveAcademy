@@ -116,7 +116,9 @@ window.eventChangeLang = async function(evt) {
 	var lang = evt.target.value;
 	var folder = "lang/" + lang + "/";
 	var loc = window.location.href;
-	loc = loc.substring(loc.lastIndexOf("/") + 1, loc.lastIndexOf("."));
+	var lastSlash = loc.lastIndexOf("/");
+	var lastDot = loc.lastIndexOf(".");
+	loc = loc.substring(loc.lastIndexOf("/") + 1, (lastDot > lastSlash) ? lastDot : loc.length);
 	
 	//Get text
 	var navbar = await getResource(folder + "navbar.html");
