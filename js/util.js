@@ -22,6 +22,10 @@ window.addEventListener("DOMContentLoaded", function() {
 		}
 	}
 	
+	initDropdowns();
+});
+
+window.initDropdowns = function() {
 	//Create dropdown
 	//Get all dropdown togglers
 	var togglers = document.getElementsByClassName("ddToggler");
@@ -50,7 +54,7 @@ window.addEventListener("DOMContentLoaded", function() {
 		//Set parent to relative
 		toggle.parentElement.style.position = "relative";
 	}
-});
+}
 
 window.toggleDropdown = function(elmt, evt = null) {
 	//Get target element
