@@ -196,6 +196,7 @@ window.eventChangeLang = async function(evt) {
 	}
 
 	setLang(lang);
+	initDropdowns();
 }
 
 window.setLang = function(lang) {
