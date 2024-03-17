@@ -182,11 +182,15 @@ window.eventChangeLang = async function(evt) {
 	setLang(lang);
 }
 
-window.setLang = function(lang) {			
-	for (var j = 0; j < langPicker.options.length; j++) {
-		if (langPicker.options[j].value === lang) {
-		    langPicker.selectedIndex = j;
-		    break;
+window.setLang = function(lang) {
+	var langPicker = document.getElementById("language");
+
+	if(langPicker) {
+		for (var j = 0; j < langPicker.options.length; j++) {
+			if (langPicker.options[j].value === lang) {
+			    langPicker.selectedIndex = j;
+			    break;
+			}
 		}
 	}
 }
