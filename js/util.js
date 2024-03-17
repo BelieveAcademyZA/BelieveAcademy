@@ -19,7 +19,11 @@ window.addEventListener("DOMContentLoaded", function() {
 			var arg = args[i];
 			
 			if(arg.startsWith("lang")) {
-				var lang = arg.substring(arg.lastIndexOf("="));
+				var lang = arg.substring(arg.lastIndexOf("=") + 1);
+
+				if(lang == langPicker.value) {
+					continue;
+				}
 				
 				for (var j = 0; j < langPicker.options.length; j++) {
 			                if (langPicker.options[j].value === lang) {
