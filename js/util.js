@@ -166,7 +166,7 @@ window.eventChangeLang = async function(evt) {
 	var pages = nav.getElementsByTagName("a");
 	for(var i = 0; i < pages.length; i++) {
 		var page = pages[i];
-		if(page.classList.contains("ddToggler") || page.href.contains("#")) {
+		if(page.classList.contains("ddToggler")) {
 			continue;
 		}
 		
