@@ -163,8 +163,8 @@ window.eventChangeLang = async function(evt) {
 	nav.innerHTML = navbar;
 
 	//Set "current" page class
-	nav.querySelector("a[href^=\"" + loc + "\"").classList.add("current");
-	var parents = nav.querySelectorAll("a a[href^=\"" + loc + "\"");
+	nav.querySelector("a[href^=\"" + loc + "\"]").classList.add("current");
+	var parents = nav.querySelectorAll("a a[href^=\"" + loc + "\"]");
 	for(var i = 0; i < parents.length; i++) {
 		parents[i].classList.add("current");
 	}
