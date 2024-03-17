@@ -9,6 +9,28 @@ window.addEventListener("DOMContentLoaded", function() {
 		// var evt = new Event("input", {target: langPicker});
 		// langPicker.dispatchEvent(evt);
 	}
+
+	//Load language if specified in GET
+	var args = window.location.href;
+	args = args.substring(args.lastIndexOf("?"));
+	if(args) {
+		args = args.split("&");
+		args.forEach(function(arg) {
+			if(arg.startsWith("lang")) {
+				var lang = arg.substring(arg.lastIndexOf("="));
+				
+				for (var i = 0; i < langPicker.options.length; i++) {
+			                if (langPicker.options[i].value === lang) {
+			                    langPicker.selectedIndex = i;
+			                    break;
+			                }
+			        }
+
+				var evt = new Event("input", {target: langPicker});
+				langPicker.dispatchEvent(evt);
+			}
+		});
+	}
 	
 	//Create dropdown
 	//Get all dropdown togglers
@@ -133,6 +155,19 @@ window.eventChangeLang = async function(evt) {
 	//Set html
 	var nav = document.getElementsByTagName("nav")[0];
 	nav.innerHTML = navbar;
+
+	//Set "current" page class
+	nav.querySelector("a[href^=\"" + loc + "\"").classList.add("current");
+	var parents = nav.querySelectorAll("a a[href^=\"" + loc + "\"");
+	parents.forEach(function(upper) {
+		upper.classList.add("current");
+	});
+
+	//Add language to nav pages
+	var pages = nav.getElementsByTagName("a");
+	pages.forEach(function(page) {
+		page.href += "?lang=" + lang;
+	});
 	
 	//Set miscellaneous text
 	document.head.querySelector("title").innerText = misc[0];
