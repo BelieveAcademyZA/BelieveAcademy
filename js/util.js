@@ -28,13 +28,13 @@ window.addEventListener("DOMContentLoaded", function() {
 		var toggle = togglers[i];
 		
 		//Add click functionality
-		toggle.addEventListener("pointerup", function(evt) {
-			toggleDropdown(evt.target);
+		toggle.addEventListener("click", function(evt) {
+			toggleDropdown(evt.target, evt);
 		});
 		
 		//Remove click functionality for dropdown icon
 		try {
-			toggle.querySelector(".ddIcon").removeEventListener("pointerup", function(evt) {
+			toggle.querySelector(".ddIcon").removeEventListener("click", function(evt) {
 				toggleDropdown(evt.target);
 			});
 		} catch(e) {}
@@ -50,7 +50,7 @@ window.addEventListener("DOMContentLoaded", function() {
 	}
 });
 
-window.toggleDropdown = function(elmt) {
+window.toggleDropdown = function(elmt, evt = null) {
 	//Get target element
 	var target = elmt.parentElement.querySelector(".ddMenu");
 	
@@ -63,6 +63,11 @@ window.toggleDropdown = function(elmt) {
 		
 		icon.setAttribute("collapsed", icon.getAttribute("collapsed") == "false");
 	} catch(e) {}
+
+	//Consume event
+	if(evt) {
+		evt.preventDefault();
+	}
 }
 
 window.createGallery = function(limit = 100) {
@@ -160,7 +165,12 @@ window.eventChangeLang = async function(evt) {
 	//Add language to nav pages
 	var pages = nav.getElementsByTagName("a");
 	for(var i = 0; i < pages.length; i++) {
-		pages[i].href += "?lang=" + lang;
+		var page = pages[i];
+		if(page.classList.contains("ddToggler") || page.href.contains("#")) {
+			continue;
+		}
+		
+		page.href += "?lang=" + lang;
 	}
 	
 	//Set miscellaneous text
