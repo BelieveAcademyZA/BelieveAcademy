@@ -53,6 +53,20 @@ ol ul {
 	list-style: none;
 }
 
+header {
+	position: relative;
+}
+
+/* header a { */
+	
+/* } */
+
+header .language {
+	position: absolute;
+	top: 5px;
+	right: 5px;
+}
+
 nav {
 	/* background: linear-gradient(to bottom, white 80%, #fed 80% 100%); */
 	background-color: white;

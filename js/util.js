@@ -1,5 +1,16 @@
-//Create dropdown
 window.addEventListener("DOMContentLoaded", function() {
+	//Add languagee changed event listener
+	var langPicker = document.getElementById("language");
+	
+	if(langPicker) {
+		langPicker.addEventListener("input", (evt) => {eventChangeLang(evt);});
+	}
+	
+	//Load default language
+	var evt = new Event("input", {target: langPicker});
+	langPicker.dispatchEvent(evt);
+	
+	//Create dropdown
 	//Get all dropdown togglers
 	var togglers = document.getElementsByClassName("ddToggler");
 	
@@ -12,12 +23,16 @@ window.addEventListener("DOMContentLoaded", function() {
 		});
 		
 		//Remove click functionality for dropdown icon
-		toggle.querySelector(".ddIcon").removeEventListener("pointerup", function(evt) {
-			toggleDropdown(evt.target);
-		});
+		try {
+			toggle.querySelector(".ddIcon").removeEventListener("pointerup", function(evt) {
+				toggleDropdown(evt.target);
+			});
+		} catch(e) {}
 		
 		//Hide dropdown
-		toggle.querySelector(".ddIcon").setAttribute("collapsed", "false");
+		try {
+			toggle.querySelector(".ddIcon").setAttribute("collapsed", "false");
+		} catch(e) {}
 		toggleDropdown(toggle);
 		
 		//Set parent to relative
@@ -33,9 +48,11 @@ window.toggleDropdown = function(elmt) {
 	target.style.display = (target.style.display == "none") ? "block" : "none";
 	
 	//Toggle dropdown icon
-	var icon = elmt.querySelector(".ddIcon");
-	
-	icon.setAttribute("collapsed", icon.getAttribute("collapsed") == "false");
+	try {
+		var icon = elmt.querySelector(".ddIcon");
+		
+		icon.setAttribute("collapsed", icon.getAttribute("collapsed") == "false");
+	} catch(e) {}
 }
 
 window.createGallery = function(limit = 100) {
@@ -92,6 +109,52 @@ window.createGallery = function(limit = 100) {
 	})
 	.catch(error => {
 		console.error(error);
+	});
+}
+
+window.eventChangeLang = function(evt) {
+	var lang = evt.target.value;
+	var folder = "lang/" + lang + "/";
+	var loc = window.location.href;
+	loc = loc.substring(loc.lastIndexOf("/") + 1, loc.lastIndexOf("."));
+	
+	//Get text
+	var navbar = getResource(folder + "navbar.html");
+	var plain = getResource(folder + loc + ".txt");
+	
+	//Set html
+	var nav = document.getElementsByTagName("nav")[0];
+	nav.innerHTML = navbar;
+	
+	var body = document.getElementsByTagName("main")[0];
+	if(plain) {
+		body.innerHTML = textToHtml(plain);
+	} else {
+		
+		var html = getResource(folder + loc + ".html");
+		
+		if(html) {
+			body.innerHTML = html;
+		}
+	}
+}
+
+window.getResource = function(url) {
+	fetch(url)
+	.then(response => {
+		if(!response.ok) {
+			console.error(response.message);
+		}
+		
+		return response.text();
+	})
+	.then(data => {
+		data = data.replaceAll("\r", "");
+		return data;
+	})
+	.catch(error => {
+		console.error(error);
+		return "";
 	});
 }
 
@@ -231,4 +294,9 @@ window.getPermissions = function(data) {
 
 window.getKeysWithValue = function(obj, targetValue) {
   return Object.keys(obj).filter(key => obj[key] === targetValue);
+}
+
+window.textToHtml = function(txt) {
+	var html = lines.replaceAll("\n", "</p>\n<p>");
+	return "<p>" + html + "<\p>";
 }
