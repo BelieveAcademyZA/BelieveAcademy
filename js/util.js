@@ -154,6 +154,7 @@ window.eventChangeLang = async function(evt) {
 	
 	//Set miscellaneous text
 	document.head.querySelector("title").innerText = misc[0];
+	document.querySelector("body > header > span").innerText = misc[0];
 	document.querySelector("body > header > div > label").innerText = misc[1];
 	
 	var body = document.getElementsByTagName("main")[0];
