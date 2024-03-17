@@ -15,7 +15,7 @@ window.addEventListener("DOMContentLoaded", function() {
 			var arg = args[i];
 			
 			if(arg.startsWith("lang")) {
-				var lang = arg.split(arg.lastIndexOf("=") + 1);
+				var lang = arg.split(arg.lastIndexOf("=") + 1)[0];
 				setLang(lang);
 				langPicker.dispatchEvent(new Event("input"));
 			}
@@ -67,9 +67,9 @@ window.toggleDropdown = function(elmt, evt = null) {
 	} catch(e) {}
 
 	//Consume event
-	if(evt) {
-		evt.preventDefault();
-	}
+	// if(evt) {
+	// 	evt.preventDefault();
+	// }
 }
 
 window.createGallery = function(limit = 100) {
