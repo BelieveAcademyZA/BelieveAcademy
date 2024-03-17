@@ -15,21 +15,23 @@ window.addEventListener("DOMContentLoaded", function() {
 	args = args.substring(args.lastIndexOf("?"));
 	if(args) {
 		args = args.split("&");
-		args.forEach(function(arg) {
+		for(var i = 0; i < args.length; i++) {
+			var arg = args[i];
+			
 			if(arg.startsWith("lang")) {
 				var lang = arg.substring(arg.lastIndexOf("="));
 				
-				for (var i = 0; i < langPicker.options.length; i++) {
-			                if (langPicker.options[i].value === lang) {
-			                    langPicker.selectedIndex = i;
+				for (var j = 0; j < langPicker.options.length; j++) {
+			                if (langPicker.options[j].value === lang) {
+			                    langPicker.selectedIndex = j;
 			                    break;
 			                }
 			        }
 
-				var evt = new Event("input", {target: langPicker});
+				var evt = new Event("input", {bubbler: true});
 				langPicker.dispatchEvent(evt);
 			}
-		});
+		}
 	}
 	
 	//Create dropdown
@@ -159,15 +161,15 @@ window.eventChangeLang = async function(evt) {
 	//Set "current" page class
 	nav.querySelector("a[href^=\"" + loc + "\"").classList.add("current");
 	var parents = nav.querySelectorAll("a a[href^=\"" + loc + "\"");
-	parents.forEach(function(upper) {
-		upper.classList.add("current");
-	});
+	for(var i = 0; i < parents.length; i++) {
+		parents[i].classList.add("current");
+	}
 
 	//Add language to nav pages
 	var pages = nav.getElementsByTagName("a");
-	pages.forEach(function(page) {
-		page.href += "?lang=" + lang;
-	});
+	for(var i = 0; i < pages.length; i++) {
+		pages[i].href += "?lang=" + lang;
+	}
 	
 	//Set miscellaneous text
 	document.head.querySelector("title").innerText = misc[0];
