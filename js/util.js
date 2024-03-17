@@ -197,6 +197,11 @@ window.eventChangeLang = async function(evt) {
 		
 		page.href += "?lang=" + lang;
 	}
+
+	//Update gallery
+	if(document.getElementById("gallery")) {
+		createGallery();
+	}
 }
 
 window.setLang = function(lang) {
