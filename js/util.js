@@ -34,15 +34,15 @@ window.initDropdowns = function() {
 		var toggle = togglers[i];
 		
 		//Add click functionality
-		toggle.addEventListener("click", function(evt) {
+		var clicker = function(evt) {
 			toggleDropdown(evt.target, evt);
-		});
+		}
+		
+		toggle.addEventListener("click", clicker);
 		
 		//Remove click functionality for dropdown icon
 		try {
-			toggle.querySelector(".ddIcon").removeEventListener("click", function(evt) {
-				toggleDropdown(evt.target);
-			});
+			toggle.querySelector(".ddIcon").removeEventListener("click", clicker);
 		} catch(e) {}
 		
 		//Hide dropdown
