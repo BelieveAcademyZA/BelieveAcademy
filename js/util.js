@@ -119,6 +119,10 @@ window.eventChangeLang = async function(evt) {
 	var lastSlash = loc.lastIndexOf("/");
 	var lastDot = loc.lastIndexOf(".");
 	loc = loc.substring(loc.lastIndexOf("/") + 1, (lastDot > lastSlash) ? lastDot : loc.length);
+
+	if(loc == "") {
+		loc = "index";
+	}
 	
 	//Get text
 	var navbar = await getResource(folder + "navbar.html");
