@@ -12,7 +12,7 @@ window.addEventListener("DOMContentLoaded", function() {
 
 	//Load language if specified in GET
 	var args = window.location.href;
-	args = args.substring(args.lastIndexOf("?"));
+	args = args.substring(args.lastIndexOf("?") + 1);
 	if(args) {
 		args = args.split("&");
 		for(var i = 0; i < args.length; i++) {
