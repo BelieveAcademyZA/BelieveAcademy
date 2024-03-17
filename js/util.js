@@ -35,7 +35,7 @@ window.initDropdowns = function() {
 		
 		//Add click functionality
 		var clicker = function(evt) {
-			toggleDropdown(evt.target, evt);
+			toggleDropdown(evt.target);
 		}
 		
 		toggle.addEventListener("click", clicker);
@@ -56,7 +56,11 @@ window.initDropdowns = function() {
 	}
 }
 
-window.toggleDropdown = function(elmt, evt = null) {
+window.toggleDropdown = function(elmt) {
+	if(elmt.classList.contains("ddIcon")) {
+		elmt = elmt.parentElement;
+	}	
+	
 	//Get target element
 	var target = elmt.parentElement.querySelector(".ddMenu");
 	
