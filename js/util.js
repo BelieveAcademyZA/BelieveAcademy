@@ -144,9 +144,13 @@ window.eventChangeLang = async function(evt) {
 	
 	//Get text
 	var navbar = await getResource(folder + "navbar.html");
+	var footer = await getResource(folder + "footer.html");
 	var plain = await getResource(folder + loc + ".txt");
 	var misc = await getResource(folder + "misc.txt");
 	misc = misc.split("\n");
+	
+	//Set footer html
+	document.querySelector("footer").innerHTML = footer;
 	
 	//Set miscellaneous text
 	document.head.querySelector("title").innerText = misc[0];
