@@ -182,7 +182,7 @@ window.eventChangeLang = async function(evt) {
 
 	while (currentElement !== null) {
 		if (currentElement.tagName && (currentElement.tagName.toLowerCase() == "a" || currentElement.tagName.toLowerCase() == "li")) {
-			currentElement.classList.add(className);
+			currentElement.classList.add("current");
 		}
 		currentElement = currentElement.parentNode;
 	}
