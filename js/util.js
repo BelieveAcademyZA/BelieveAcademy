@@ -69,11 +69,6 @@ window.toggleDropdown = function(elmt, evt = null) {
 		
 		icon.setAttribute("collapsed", icon.getAttribute("collapsed") == "false");
 	} catch(e) {}
-
-	//Consume event
-	// if(evt) {
-	// 	evt.preventDefault();
-	// }
 }
 
 window.createGallery = function(limit = 100) {
@@ -153,10 +148,29 @@ window.eventChangeLang = async function(evt) {
 	var misc = await getResource(folder + "misc.txt");
 	misc = misc.split("\n");
 	
-	//Set html
+	//Set miscellaneous text
+	document.head.querySelector("title").innerText = misc[0];
+	document.querySelector("body > header > div > label").innerText = misc[1];
+	
+	var body = document.getElementsByTagName("main")[0];
+	if(plain != undefined) {
+		body.innerHTML = textToHtml(plain);
+	} else {
+		
+		var html = await getResource(folder + loc + ".html");
+		
+		if(html) {
+			body.innerHTML = html;
+		}
+	}
+
+	setLang(lang);
+
+	//Update navbar
 	var nav = document.getElementsByTagName("nav")[0];
 	nav.innerHTML = navbar;
-
+	initDropdowns();
+	
 	//Set "current" page class
 	nav.querySelector("a[href^=\"" + loc + "\"]").classList.add("current");
 	let currentElement = nav.querySelector("a[href^=\"" + loc + "\"]").parentNode;
@@ -178,25 +192,6 @@ window.eventChangeLang = async function(evt) {
 		
 		page.href += "?lang=" + lang;
 	}
-	
-	//Set miscellaneous text
-	document.head.querySelector("title").innerText = misc[0];
-	document.querySelector("body > header > div > label").innerText = misc[1];
-	
-	var body = document.getElementsByTagName("main")[0];
-	if(plain != undefined) {
-		body.innerHTML = textToHtml(plain);
-	} else {
-		
-		var html = await getResource(folder + loc + ".html");
-		
-		if(html) {
-			body.innerHTML = html;
-		}
-	}
-
-	setLang(lang);
-	initDropdowns();
 }
 
 window.setLang = function(lang) {
