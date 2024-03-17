@@ -4,10 +4,6 @@ window.addEventListener("DOMContentLoaded", function() {
 	
 	if(langPicker) {
 		langPicker.addEventListener("input", (evt) => {eventChangeLang(evt);});
-		
-		//Load default language
-		// var evt = new Event("input", {target: langPicker});
-		// langPicker.dispatchEvent(evt);
 	}
 
 	//Load language if specified in GET
@@ -19,21 +15,7 @@ window.addEventListener("DOMContentLoaded", function() {
 			var arg = args[i];
 			
 			if(arg.startsWith("lang")) {
-				var lang = arg.substring(arg.lastIndexOf("=") + 1);
-
-				if(lang == langPicker.value) {
-					continue;
-				}
-				
-				for (var j = 0; j < langPicker.options.length; j++) {
-			                if (langPicker.options[j].value === lang) {
-			                    langPicker.selectedIndex = j;
-			                    break;
-			                }
-			        }
-
-				var evt = new Event("input", {bubbler: true});
-				langPicker.dispatchEvent(evt);
+				setLang(arg.split(arg.lastIndexOf("=") + 1));
 			}
 		}
 	}
@@ -197,8 +179,16 @@ window.eventChangeLang = async function(evt) {
 		}
 	}
 
-	var dom = new Event("DOMContentLoaded", {bubbles: true, cancelable: true});
-	window.document.dispatchEvent(dom);
+	setLang(lang);
+}
+
+window.setLang = function(lang) {			
+	for (var j = 0; j < langPicker.options.length; j++) {
+		if (langPicker.options[j].value === lang) {
+		    langPicker.selectedIndex = j;
+		    break;
+		}
+	}
 }
 
 window.getResource = async function(url) {
