@@ -6,8 +6,8 @@ window.addEventListener("DOMContentLoaded", function() {
 		langPicker.addEventListener("input", (evt) => {eventChangeLang(evt);});
 		
 		//Load default language
-		var evt = new Event("input", {target: langPicker});
-		langPicker.dispatchEvent(evt);
+		// var evt = new Event("input", {target: langPicker});
+		// langPicker.dispatchEvent(evt);
 	}
 	
 	//Create dropdown
@@ -129,7 +129,7 @@ window.eventChangeLang = async function(evt) {
 	nav.innerHTML = navbar;
 	
 	var body = document.getElementsByTagName("main")[0];
-	if(plain) {
+	if(plain != undefined) {
 		body.innerHTML = textToHtml(plain);
 	} else {
 		
@@ -139,6 +139,9 @@ window.eventChangeLang = async function(evt) {
 			body.innerHTML = html;
 		}
 	}
+
+	var dom = new Event("DOMContentLoaded", {bubbles: true, cancelable: true});
+	window.document.dispatchEvent(dom);
 }
 
 window.getResource = async function(url) {
