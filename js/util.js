@@ -307,6 +307,6 @@ window.getKeysWithValue = function(obj, targetValue) {
 }
 
 window.textToHtml = function(txt) {
-	var html = lines.replaceAll("\n", "</p>\n<p>");
+	var html = txt.replaceAll("\n", "</p>\n<p>");
 	return "<p>" + html + "<\p>";
 }
