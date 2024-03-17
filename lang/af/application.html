@@ -1,0 +1,166 @@
+<h2>Inskrywing</h2>
+
+<form onsubmit="handleFormSubmission(event)" style="text-align: center;">
+	<h3>Afdeling A: inligting</h3>
+
+	<h4 style="text-align: center;">Student</h4>
+
+	<label for="nameAndSurname">Naam en Van <span style="color: red;">*</span></label>
+	<input type="text" autocomplete="name" id="nameAndSurname" name="name" required><br>
+
+	<label for="idNum">ID-nommer <span style="color: red;">*</span></label>
+	<input type="text" id="idNum" name="idNum" required minlength="13" maxlength="13" pattern="^\d{13}$" placeholder="13-syfer ID-nommer"><br>
+
+	<fieldset>
+		<legend>Kurrikulum <span style="color: red;">*</span></legend>
+
+		<input type="radio" name="kurrikulum" id="cambridge" value="cambridge">
+		<label for="cambridge">Cambridge</label><br>
+
+		<input type="radio" name="kurrikulum" id="GED" value="GED">
+		<label for="GED">GED</label>
+	</fieldset>
+
+
+	<label for="grade">Graad/vlak wat ingeskryf moet word by <span style="color: red;">*</span></label>
+	<input type="text" id="grade" name="grade" required minlength="1" maxlength="5">
+
+	<h4 style="text-align: center;">Sluit asseblief afskrifte van die volgende dokumente in:</h4>
+	<ul class="split constrict">
+		<li>ID/geboortesertifikaat</li>
+		<li>Vorige raport</li>
+		<li>Remediërende verslae</li>
+	</ul>
+
+	<hr>
+
+	<h4>Toestemming</h4>
+	<p class="bold">Ons gee hiermee toestemming dat Believe Academy:</p>
+	<fieldset>
+		<input type="checkbox" id="marketing" name="marketing">
+		<label for="marketing">Foto's van my kind(ers) mag publiseer vir bemarkingsdoeleindes</label><br>
+
+		<input type="checkbox" id="medical" name="medical emergencies">
+		<label for="medical">Mediese nooddienste mag verskaf as ons nie gekontak kan word nie</label><br>
+
+		<input type="checkbox" id="outings" name="outings">
+		<label for="outings">My kind(ers) vir akademiese uitstappies mag vervoer</label><br>
+
+		<input type="checkbox" id="practicals" name="practicals">
+		<label for="practicals">My kind(ers) mag deelneem aan wetenskaplike praktika, insluitend die disseksie van diere-organe</label><br>
+	</fieldset>
+
+	<hr>
+
+	<h4>Ouer(s)/voog</h4>
+	<label for="father">Vader</label>
+	<input type="text" autocomplete="given-name" id="father" name="father"><br>
+
+	<label for="mother">Moeder</label>
+	<input type="text" autocomplete="given-name" id="mother" name="mother"><br>
+
+	<label for="telFather">Kontaknr. vader</label>
+	<input type="tel" autocomplete="tel-national" id="telFather" name="telFather"><br>
+
+	<label for="telMother">Kontaknr. moeder</label>
+	<input type="tel" autocomplete="tel-national" id="telMother" name="telMother"><br>
+
+	<label for="email">E-pos</label>
+	<input type="email" autocomplete="email" id="email" name="email"><br>
+
+	<label for="emergency">Noodkontaknaam en -nommer.</label>
+	<input type="text" id="emergency" name="emergency"><br>
+
+	<label for="doctor">Gesinsdokter se naam &amp; geen. in geval van 'n noodgeval</label>
+	<input type="text" id="doctor" name="doctor"><br>
+
+	<hr>
+
+	<h4>Rekeninghouer se inligting</h4>
+	<label for="holderName">Naam en van <span style="color: red;">*</span></label>
+	<input type="text" autocomplete="name" id="holderName" name="holderName" required><br>
+
+	<label for="holderId">ID-nr. <span style="color: red;">*</span></label>
+	<input type="text" id="holderId" name="holderId" minlength="13" maxlength="13" pattern="^\d{13}$" required placeholder="13-syfer ID-nommer"><br>
+
+	<label for="address">Adres <span style="color: red;">*</span></label>
+	<input type="text" autocomplete="street-address" id="address" name="address" required><br>
+
+	<label for="holderTel">Kontaknr. <span style="color: red;">*</span></label>
+	<input type="tel" autocomplete="tel-national" id="holderTel" name="holderTel" required><br>
+
+	<label for="holderEmail">E-posadres waarna fakture gestuur kan word <span style="color: red;">*</span></label>
+	<input type="email" autocomplete="email" id="holderEmail" name="holderEmail" required><br>
+
+	<div style="text-align: left;">
+		<p>
+			Ek aanvaar hiermee volle verantwoordelikheid vir die betaling van skoolfonds en ek onderneem om my skoolfondsrekening vooruit op / voor die 7<span class="super">de</span> van elke maand te vereffen. Ek aanvaar dat my kind(ers) nie klasse mag bywoon tensy skoolfonds op datum is nie.
+		</p>
+
+		<input type="checkbox" id="accept1" required>
+		<label for="accept1" class="bold" style="width: auto;">Ek het die bogenoemde inligting gelees en stem daartoe in</label>
+
+
+		<p>
+			Skriftelike kennisgewing van kansellasie word vereis een kalendermaand voor vertrek van Believe Academy.
+		</p>
+
+		<p>
+			Ons het diep empatie met ouers wat finansiële uitdagings in die gesig staar. Ongelukkig ontvang ons sentrum geen finansiële bystand nie, wat beteken dat ons bestaan geheel en al op klasgeld staatmaak. In die geval dat 'n student se toegang geweier word weens wanbetaling, sal hertoetreding toegelaat word sodra klasgelde geldelik is, saam met 'n nuwe registrasiefooi van R1 500. Dankie vir jou begrip.
+		</p>
+		
+		
+		<h3>Afdeling B: Reëls en regulasies</h3>
+		<h4>Dragkode</h4>
+		<ul>
+			<li>
+				Studente mag gemaklike klere klas toe dra, maar daar word verwag om te alle tye netjies en gepas aan te trek.
+			</li>
+		</ul>
+
+		<h4>Algemene gedrag</h4>
+		<ul>
+			<li>
+				Daar word te alle tye verwag dat leerders beleefd en respekvol teenoor tutors, medestudente sowel as enige ander persoon op die kampus moet wees.
+			</li>
+		</ul>
+
+		<h4>Belangrik:</h4>
+		<p>
+			Die volgende wangedrag word as baie ernstig beskou en <span class="bold">Believe Academy</span> behou die reg voor om leerders wat skuldig bevind word na slegs een waarskuwing uit te sit.
+		</p>
+
+		<ul>
+			<li>BOELIE van enige aard</li>
+			<li>ROOK en/van die besit van ALKOHOL en/of Dwelms</li>
+			<li>PORNOGRAFIE van enige aard</li>
+		</ul>
+
+		<p>
+			NB: Daar word ook verwag dat leerders en ouers die reëls van die oord waarop die kampus geleë is sal nakom en dat inwoners, werknemers en kliënte van <span class="bold underline">Brinkleys River Village</span> te alle tye met respek en bedagsaamheid behandel word.
+		</p>
+
+		<p>
+			Ek, <input type="text" autocomplete="name" name="signParents" required> ouer(s) / voog van <input type="text" autocomplete="name" name="signChild" required> aanvaar hiermee die reëls en regulasies soos hierbo uiteengesit.
+		</p>
+
+		<input type="checkbox" id="accept2" vereis>
+		<label for="accept2" class="bold" style="width: auto;">Ek het bogenoemde inligting gelees en stem daartoe in</label>
+
+
+		<h4>Vrywaringsklousule</h4>
+		<p>
+			Ek, die ouer/voog van <input type="text" autocomplete="name" id="indemn"> verstaan dat <span class="bold">Believe Academy</span>, sy beamptes, werknemers en agente sal neem elke sorg om ons studente en hul ouers/voogde van besering/aanspreeklikheid/skade aan eiendom te beskerm en te voorkom, maar kan nie en/of is nie verantwoordelik vir enige sodanige beserings, eiendomsbeskadiging of aanspreeklikheid wat mag ontstaan uit inskrywing by die kampus nie. Ek aanvaar verder volle verantwoordelikheid vir die besluit, en die gevolge daarvan, om my kind(ers) toe te laat om deel te neem aan die aktiwiteite by <span class="bold">Believe Academy</span>. Ek stel hiermee Believe Academy, sy beamptes, werknemers en agente vry en onskadelik van enige en alle koste, verliese, uitgawes, skadevergoeding, eise, regsgedinge, oorsake van aksie of enige ander aanspreeklikheid of verantwoordelikheid hoegenaamd, in reg of in billikheid, insluitend prokureursfooie en verwante koste, wat voortspruit uit enige besering aan enige persoon(e) of skade aan eiendom wat voortspruit uit, of wat op enige manier verband hou met <span class="bold">Believe Academy</span> en my kind(ers) se inskrywing by die skool.
+		</p>
+
+		<input type="checkbox" id="accept3" vereis>
+		<label for="accept3" class="bold" style="width: auto;">Ek het die bogenoemde inligting gelees en stem daartoe in</label>
+	</div>
+
+	<p>
+		Deur hierdie vorm in te dien, stem jy in dat jy alle inligting wat in hierdie dokument vervat is gelees en aanvaar het.
+	</p>
+
+	<input type="submit">
+	<input type="reset">
+</form>
