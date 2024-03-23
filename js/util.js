@@ -370,13 +370,13 @@ window.addEventListener("DOMContentLoaded", async function() {
 			
 			if(arg.startsWith("lang")) {
 				var lang = arg.substring(arg.lastIndexOf("=") + 1);
-				async loadLang(lang);
+				loadLang(lang);
 				loaded = true;
 			}
 		}
 		
 		if(!loaded) {
-			async loadLang("en");
+			loadLang("en");
 		}
 	}
 	
