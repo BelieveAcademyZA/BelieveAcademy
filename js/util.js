@@ -149,7 +149,6 @@ window.loadLang = async function(lang) {
 	//Get text
 	var navbar = await getResource(folder + "navbar.html");
 	var footer = await getResource(folder + "footer.html");
-	var plain = await getResource(folder + loc + ".txt");
 	var misc = await getResource(folder + "misc.txt");
 	misc = misc.split("\n");
 	
@@ -161,16 +160,11 @@ window.loadLang = async function(lang) {
 	document.querySelector("body > header > span").innerText = misc[0];
 	document.querySelector("body > header > div > label").innerText = misc[1];
 	
-	var body = document.getElementsByTagName("main")[0];
-	if(plain != undefined) {
-		body.innerHTML = textToHtml(plain);
-	} else {
-		
-		var html = await getResource(folder + loc + ".html");
-		
-		if(html) {
-			body.innerHTML = html;
-		}
+	var body = document.getElementsByTagName("main")[0];	
+	var html = await getResource(folder + loc + ".html");
+	
+	if(html) {
+		body.innerHTML = html;
 	}
 
 	setLang(lang);
