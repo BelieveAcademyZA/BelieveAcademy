@@ -1,5 +1,28 @@
-window.addEventListener("DOMContentLoaded", function() {
-	//Add languagee changed event listener
+//Load window content
+//Load language if specified in GET
+var args = window.location.href;
+args = args.substring(args.lastIndexOf("?") + 1);
+if(args) {
+	args = args.split("&");
+	var loaded = false;
+	for(var i = 0; i < args.length; i++) {
+		var arg = args[i];
+		
+		if(arg.startsWith("lang")) {
+			var lang = arg.substring(arg.lastIndexOf("=") + 1);
+			await loadLang(lang);
+			loaded = true;
+		}
+	}
+	
+	if(!loaded) {
+		await loadLang("en");
+	}
+}
+
+
+window.addEventListener("DOMContentLoaded", async function() {
+	//Add language changed event listener
 	var langPicker = document.getElementById("language");
 	
 	if(langPicker) {
@@ -16,8 +39,7 @@ window.addEventListener("DOMContentLoaded", function() {
 			
 			if(arg.startsWith("lang")) {
 				var lang = arg.substring(arg.lastIndexOf("=") + 1);
-				setLang(lang);
-				langPicker.dispatchEvent(new Event("input"));
+				await loadLang(lang);
 			}
 		}
 	}
@@ -132,8 +154,9 @@ window.createGallery = function(limit = 100) {
 	});
 }
 
-window.eventChangeLang = async function(evt) {
-	var lang = evt.target.value;
+window.loadLang = async function(lang) {
+	setLang(lang);
+	
 	var folder = "lang/" + lang + "/";
 	var loc = window.location.href;
 	var lastSlash = loc.lastIndexOf("/");
@@ -206,6 +229,11 @@ window.eventChangeLang = async function(evt) {
 	if(document.getElementById("gallery")) {
 		createGallery();
 	}
+}
+
+window.eventChangeLang = async function(evt) {
+	var lang = evt.target.value;
+	await loadLang(lang);
 }
 
 window.setLang = function(lang) {
