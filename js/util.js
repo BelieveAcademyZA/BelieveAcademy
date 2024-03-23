@@ -361,7 +361,7 @@ window.addEventListener("DOMContentLoaded", async function() {
 
 	//Load language if specified in GET
 	var args = window.location.href;
-	args = args.substring(args.lastIndexOf("?") + 1, arg.indexOf("#"));
+	args = args.substring(args.lastIndexOf("?") + 1, args.indexOf("#"));
 	if(args) {
 		args = args.split("&");
 		var loaded = false;
