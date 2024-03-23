@@ -1,26 +1,3 @@
-//Load window content
-//Load language if specified in GET
-var args = window.location.href;
-args = args.substring(args.lastIndexOf("?") + 1);
-if(args) {
-	args = args.split("&");
-	var loaded = false;
-	for(var i = 0; i < args.length; i++) {
-		var arg = args[i];
-		
-		if(arg.startsWith("lang")) {
-			var lang = arg.substring(arg.lastIndexOf("=") + 1);
-			loadLang(lang);
-			loaded = true;
-		}
-	}
-	
-	if(!loaded) {
-		loadLang("en");
-	}
-}
-
-
 window.addEventListener("DOMContentLoaded", async function() {
 	//Add language changed event listener
 	var langPicker = document.getElementById("language");
@@ -404,4 +381,26 @@ window.getKeysWithValue = function(obj, targetValue) {
 window.textToHtml = function(txt) {
 	var html = txt.replaceAll("\n", "</p>\n<p>");
 	return "<p>" + html + "<\p>";
+}
+
+//Load window content
+//Load language if specified in GET
+var args = window.location.href;
+args = args.substring(args.lastIndexOf("?") + 1);
+if(args) {
+	args = args.split("&");
+	var loaded = false;
+	for(var i = 0; i < args.length; i++) {
+		var arg = args[i];
+		
+		if(arg.startsWith("lang")) {
+			var lang = arg.substring(arg.lastIndexOf("=") + 1);
+			loadLang(lang);
+			loaded = true;
+		}
+	}
+	
+	if(!loaded) {
+		loadLang("en");
+	}
 }
