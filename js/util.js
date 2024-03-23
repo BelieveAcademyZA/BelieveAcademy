@@ -10,13 +10,13 @@ if(args) {
 		
 		if(arg.startsWith("lang")) {
 			var lang = arg.substring(arg.lastIndexOf("=") + 1);
-			await loadLang(lang);
+			loadLang(lang);
 			loaded = true;
 		}
 	}
 	
 	if(!loaded) {
-		await loadLang("en");
+		loadLang("en");
 	}
 }
 
