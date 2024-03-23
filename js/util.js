@@ -1,35 +1,3 @@
-window.addEventListener("DOMContentLoaded", async function() {
-	//Add language changed event listener
-	var langPicker = document.getElementById("language");
-	
-	if(langPicker) {
-		langPicker.addEventListener("input", (evt) => {eventChangeLang(evt);});
-	}
-
-	//Load language if specified in GET
-	var args = window.location.href;
-	args = args.substring(args.lastIndexOf("?") + 1, arg.indexOf("#"));
-	if(args) {
-		args = args.split("&");
-		var loaded = false;
-		for(var i = 0; i < args.length; i++) {
-			var arg = args[i];
-			
-			if(arg.startsWith("lang")) {
-				var lang = arg.substring(arg.lastIndexOf("=") + 1);
-				async loadLang(lang);
-				loaded = true;
-			}
-		}
-		
-		if(!loaded) {
-			async loadLang("en");
-		}
-	}
-	
-	initDropdowns();
-});
-
 window.initDropdowns = function() {
 	//Create dropdown
 	//Get all dropdown togglers
@@ -382,3 +350,35 @@ window.textToHtml = function(txt) {
 	var html = txt.replaceAll("\n", "</p>\n<p>");
 	return "<p>" + html + "<\p>";
 }
+
+window.addEventListener("DOMContentLoaded", async function() {
+	//Add language changed event listener
+	var langPicker = document.getElementById("language");
+	
+	if(langPicker) {
+		langPicker.addEventListener("input", (evt) => {eventChangeLang(evt);});
+	}
+
+	//Load language if specified in GET
+	var args = window.location.href;
+	args = args.substring(args.lastIndexOf("?") + 1, arg.indexOf("#"));
+	if(args) {
+		args = args.split("&");
+		var loaded = false;
+		for(var i = 0; i < args.length; i++) {
+			var arg = args[i];
+			
+			if(arg.startsWith("lang")) {
+				var lang = arg.substring(arg.lastIndexOf("=") + 1);
+				async loadLang(lang);
+				loaded = true;
+			}
+		}
+		
+		if(!loaded) {
+			async loadLang("en");
+		}
+	}
+	
+	initDropdowns();
+});
