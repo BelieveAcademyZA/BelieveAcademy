@@ -8,7 +8,8 @@ window.addEventListener("DOMContentLoaded", async function() {
 
 	//Load language if specified in GET
 	var args = window.location.href;
-	args = args.substring(args.lastIndexOf("?") + 1, args.indexOf("#"));
+	var hashIndex = args.indexOf("#");
+	args = args.substring(args.lastIndexOf("?") + 1, hashIndex > -1 ? hashIndex : args.length);
 	var loadedLang = false;
 	if(args) {
 		args = args.split("&");
