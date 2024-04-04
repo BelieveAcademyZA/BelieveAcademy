@@ -120,6 +120,7 @@ footer {
 	color: black;
 	font-weight: bold;
 	padding: 1rem;
+	overflow-x: scroll;
 }
 
 footer p {
