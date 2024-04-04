@@ -219,14 +219,7 @@ img.logo {
 }
 
 span.logo {
-	position: absolute;
-	right: 0;
-	left: 0;
-	top: 0;
-	bottom: 0;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+	display: block;
 	font-size: 2rem;
 	font-style: italic;
 	font-weight: bold;
@@ -261,4 +254,17 @@ p.logo {
 .super {
 	vertical-align: super;
     font-size: 80%;
+}
+
+@media (min-width: 1100px) {
+	span.logo {
+		position: absolute;
+		right: 0;
+		left: 0;
+		top: 0;
+		bottom: 0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
 }
